@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       switch (decision) {
         case 'Buscar sigilosamente una salida':
-          storyTitle.textContent = 'Aproximación Sigilosa';
+          storyTitle.textContent = 'Buscar sigilosamente una salida';
           storyText.textContent = `
                       Te mueves con cautela por la cabaña, procurando que las tablas del suelo no crujan 
                       bajo tus pies. Tras una inspección minuciosa, descubres una pequeña trampilla 
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
           break;
 
         case 'Romper la ventana y escapar':
-          storyTitle.textContent = 'Escape Arriesgado';
+          storyTitle.textContent = 'Romper la ventana y escapar';
           storyText.textContent = `
                 Con un movimiento rápido, tomas una silla vieja y la arrojas contra la ventana más 
                 cercana. El cristal se hace añicos con un estruendo que rompe el silencio del bosque. 
