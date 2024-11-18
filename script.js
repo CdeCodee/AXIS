@@ -12,10 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const storyText = document.querySelector('.story-text');
   const decisionButtons = document.querySelectorAll('.decision-button');
 
-  // ohhhhhh siiii
-
-  // hjkjhkj
-  
   let selectedCharacter = null;
 
   // Configuración de imágenes con rutas absolutas
@@ -185,6 +181,107 @@ document.addEventListener('DOMContentLoaded', () => {
           ]);
           break;
 
+        case 'Seguir corriendo sin parar':
+              storyTitle.textContent = 'Seguir corriendo sin parar';
+              storyText.textContent = `
+                Sigues corriendo desenfrenadamente, sin mirar atrás, tu respiración es errática y tus piernas 
+                se sienten cada vez más pesadas. En un momento de distracción, tropiezas con un árbol caído y caes 
+                al suelo, golpeándote la cabeza. La oscuridad te envuelve y pierdes el conocimiento. 
+                Después de unos 10 minutos, despiertas desorientado, con un dolor punzante en la cabeza. 
+                Te das cuenta de que has perdido mucha energía en la huida.
+            `;
+
+              const currentHP4 = parseInt(hpBar.style.width);
+              hpBar.style.width = `${currentHP4 - 10}%`;  // Se reduce la salud debido al tropiezo
+
+              updateDecisionButtons([
+                'Recuperar fuerzas',
+                'Seguir caminando'
+            ]);
+            break;
+
+        case 'Recuperar fuerzas':
+            storyTitle.textContent = 'Recuperar fuerzas';
+            storyText.textContent = `
+                Te tomas unos minutos para respirar profundamente, calmando tu mente y cuerpo. Poco a poco, 
+                recuperas algo de energía. Aunque sigues agotado, te sientes un poco mejor, listo para continuar. 
+                Decides seguir adelante, aunque sabes que el peligro sigue cerca.
+            `;
+        
+            const currentHP5 = parseInt(hpBar.style.width);
+            hpBar.style.width = `${Math.min(currentHP5 + 10, 100)}%`;  // Recupera un poco de vida
+        
+            updateDecisionButtons([
+                'Seguir adelante con más energía',
+                'Descansar un poco más antes de continuar'
+            ]);
+            break;
+
+          case 'Seguir caminando':
+                storyTitle.textContent = 'Seguir caminando';
+                storyText.textContent = `
+                    A pesar de la caída y el dolor en tu cuerpo, decides no perder más tiempo. Te levantas lentamente 
+                    y sigues caminando, avanzando con cautela. Cada paso es más difícil que el anterior, pero sabes que 
+                    no puedes quedarte ahí mucho tiempo. La tensión en el aire te dice que el peligro sigue cerca.
+                `;
+            
+                updateDecisionButtons([
+                    'Seguir avanzando a pesar del cansancio',
+                    'Detenerse a descansar un poco'
+                ]);
+                break;
+
+          case 'Detenerse y recuperar el aliento':
+                storyTitle.textContent = 'Detenerse y recuperar el aliento';
+                storyText.textContent = `
+                    Te detienes un momento para recuperar el aliento, mientras tus pensamientos se centran en cómo 
+                    escapar de quienes te perseguían. Sin embargo, a lo lejos, escuchas nuevamente los ruidos de tus 
+                    perseguidores, aunque ahora están mucho más lejos. Parecen haber perdido el rastro, pero aún 
+                    no puedes relajarte del todo. Mientras te recuperas, algo extraño llama tu atención: un objeto 
+                    metálico sobresale de la tierra cerca de ti. Está parcialmente incrustado y parece estar 
+                    cubierto de suciedad y musgo.
+                `;
+            
+                updateDecisionButtons([
+                    'Investigar el metal',
+                    'Ignorar el metal y seguir avanzando'
+                ]);
+                break;
+          
+          case 'Investigar el metal':
+              storyTitle.textContent = 'Investigar el metal';
+              storyText.textContent = `
+                  Decides investigar el metal incrustado en el suelo. Al acercarte, notas que es un extraño 
+                  artefacto antiguo, con símbolos que no logras entender. Al tocarlo, una extraña vibración recorre 
+                  tu cuerpo, y un brillo tenue emerge de su superficie. De repente, el aire a tu alrededor se vuelve 
+                  denso y pesado, y puedes escuchar una risa distante. Algo no está bien...
+              `;
+          
+              // Puedes agregar una reducción de vida o un cambio en la historia aquí dependiendo de lo que quieras que pase
+              const currentHP6 = parseInt(hpBar.style.width);
+              hpBar.style.width = `${Math.max(currentHP6 - 5, 0)}%`;  // Reducir un poco de vida por el riesgo
+          
+              updateDecisionButtons([
+                  'Seguir explorando el artefacto',
+                  'Alejarse rápidamente y seguir caminando'
+              ]);
+              break;
+
+          case 'Ignorar el metal y seguir avanzando':
+              storyTitle.textContent = 'Ignorar el metal y seguir avanzando';
+              storyText.textContent = `
+                  Decides que investigar el metal puede ser demasiado arriesgado y decides seguir avanzando. 
+                  Con un último vistazo hacia el artefacto, te diriges hacia adelante, sin mirar atrás. 
+                  Cada paso es más pesado, pero sabes que no puedes quedarte allí mucho tiempo. 
+                  A lo lejos, el sonido de tus perseguidores comienza a desvanecerse.
+              `;
+          
+              updateDecisionButtons([
+                  'Seguir adelante con determinación',
+                  'Buscar un lugar seguro para descansar'
+              ]);
+              break;
+          
         case 'Esconderse en el bosque':
           storyTitle.textContent = 'Esconderse en el bosque';
           storyText.textContent = `
