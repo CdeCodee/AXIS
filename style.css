@@ -1,0 +1,280 @@
+:root {
+  --primary-color: #9e5d3d; /* Color madera o piedra */
+  --secondary-color: #6e4b3e; /* Tono tierra oscuro */
+  --accent-color: #f0c674; /* Amarillo tenue, similar a la luz de una antorcha */
+  --dark-color: #2f2f2f; /* Gris oscuro, como las paredes de una mazmorra */
+  --light-color: #e1e1e1; /* Gris claro, como las cenizas o polvo */
+  --background-gradient: linear-gradient(135deg, #2e1a47, #3d2b3b); /* Fondo oscuro con matices morados */
+  --text-shadow: 0 0 5px var(--accent-color); /* Reducción en la sombra para mayor legibilidad */
+  --glow-effect: 0 0 20px var(--primary-color);
+  --pixel-art-font: 'Press Start 2P', cursive; /* Fuente pixel art */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif; /* Fuente más legible para el cuerpo */
+  background: var(--background-gradient);
+  color: var(--light-color);
+  min-height: 100vh;
+  font-size: 16px; /* Tamaño base de texto mayor */
+  line-height: 1.8; /* Mejor espaciado entre líneas */
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Pantalla de inicio */
+.intro-screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--background-gradient);
+  text-align: center;
+}
+
+.game-title {
+  font-size: 4rem; /* Reducido para mayor legibilidad */
+  letter-spacing: 1rem;
+  text-shadow: var(--text-shadow);
+  animation: glow 2s ease-in-out infinite alternate;
+  font-family: var(--pixel-art-font), sans-serif; /* Mantener el estilo pixelado */
+}
+
+.game-subtitle {
+  font-size: 1.2rem; /* Aumentar ligeramente el tamaño para mayor claridad */
+  margin-top: 1rem;
+  color: var(--accent-color);
+}
+
+.start-button {
+  margin-top: 3rem;
+  padding: 1rem 3rem;
+  font-size: 1.1rem;
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--light-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--pixel-art-font), sans-serif;
+}
+
+.start-button:hover {
+  background: var(--primary-color);
+  box-shadow: var(--glow-effect);
+}
+
+/* Selección de personaje */
+.character-select {
+  padding: 2rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--accent-color);
+}
+
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Tarjetas de personaje */
+.character-card {
+  background: rgba(0, 0, 0, 0.7); /* Fondo oscuro */
+  border: 1px solid var(--primary-color);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.character-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--glow-effect);
+}
+
+/* Guerrero - Fondo gris */
+.character-card.guerrero {
+  background: #585858;
+  border: 1px solid #3a3a3a;
+}
+
+/* Mago - Fondo celeste */
+.character-card.mago {
+  background: #4c9fd1;
+  border: 1px solid #367d9b;
+}
+
+/* Arquero - Fondo verde */
+.character-card.arquero {
+  background: #4e9f68;
+  border: 1px solid #3a7a53;
+}
+
+.character-portrait {
+  position: relative;
+  height: 400px;
+}
+
+.character-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.character-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  padding: 1rem;
+}
+
+.character-stats {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.select-button {
+  width: 100%;
+  padding: 1rem;
+  background: var(--primary-color);
+  border: none;
+  color: var(--light-color);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: var(--pixel-art-font), sans-serif;
+}
+
+.select-button:hover {
+  background: var(--secondary-color);
+}
+
+/* Área principal del juego */
+.game-area {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  height: 100vh;
+}
+
+.hud {
+  background: rgba(0, 0, 0, 0.85); /* Fondo más oscuro */
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.character-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.stats-panel {
+  padding: 1rem;
+}
+
+.stat-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stat-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.progress-bar {
+  flex-grow: 1;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.progress-fill.hp {
+  background: var(--primary-color);
+}
+
+.progress-fill.xp {
+  background: var(--accent-color);
+}
+
+.story-panel {
+  background: rgba(0, 0, 0, 0.85); /* Aumentar opacidad */
+  border-radius: 10px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.story-content {
+  flex-grow: 1;
+}
+
+.story-title {
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+}
+
+.story-text {
+  line-height: 1.8;
+  font-size: 1.2rem; /* Mayor legibilidad */
+}
+
+.decision-panel {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.decision-button {
+  padding: 1rem 2rem;
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--light-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  font-family: var(--pixel-art-font), sans-serif;
+  font-size: 1.1rem;
+}
+
+.decision-button:hover {
+  background: var(--primary-color);
+  box-shadow: var(--glow-effect);
+}
+
+/* Animaciones */
+@keyframes glow {
+  from {
+      text-shadow: 0 0 5px var(--accent-color);
+  }
+  to {
+      text-shadow: 0 0 20px var(--primary-color),
+                  0 0 30px var(--accent-color);
+  }
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Axis - Elige tu Destino</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-container">
+    <!-- Inicio del juego -->
+    <div class="intro-screen">
+      <div class="logo-container">
+        <h1 class="game-title">AXIS</h1>
+        <p class="game-subtitle">Elige tu Destino</p>
+      </div>
+      <button class="start-button">Comenzar Aventura</button>
+    </div>
+
+    <!-- Selección de personaje -->
+    <div class="character-select hidden">
+      <h2 class="section-title">Elige tu Campeón</h2>
+      <div class="character-grid">
+        <!-- Guerrero -->
+        <div class="character-card guerrero" data-class="warrior">
+          <div class="character-portrait">
+            <img src="img/guerrero.jpg" alt="Guerrero">
+            <div class="character-overlay">
+              <h3>Guerrero</h3>
+              <p>Maestro del combate y el poder físico</p>
+              <ul class="character-stats">
+                <li>HP: 100</li>
+                <li>Fuerza: 10</li>
+                <li>Defensa: 8</li>
+              </ul>
+            </div>
+          </div>
+          <button class="select-button">Seleccionar Guerrero</button>
+        </div>
+
+        <!-- Mago -->
+        <div class="character-card mago" data-class="mage">
+          <div class="character-portrait">
+            <img src="img/mago.jpg" alt="Mago">
+            <div class="character-overlay">
+              <h3>Mago</h3>
+              <p>Dominador de los poderes arcanos</p>
+              <ul class="character-stats">
+                <li>HP: 80</li>
+                <li>Magia: 12</li>
+                <li>Sabiduría: 9</li>
+              </ul>
+            </div>
+          </div>
+          <button class="select-button">Seleccionar Mago</button>
+        </div>
+
+        <!-- Arquero -->
+        <div class="character-card arquero" data-class="archer">
+          <div class="character-portrait">
+            <img src="img/arquero.jpg" alt="Arquero">
+            <div class="character-overlay">
+              <h3>Arquero</h3>
+              <p>Maestro de la precisión y la agilidad</p>
+              <ul class="character-stats">
+                <li>HP: 90</li>
+                <li>Agilidad: 11</li>
+                <li>Precisión: 10</li>
+              </ul>
+            </div>
+          </div>
+          <button class="select-button">Seleccionar Arquero</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Área principal del juego -->
+    <div class="game-area hidden">
+      <div class="hud">
+        <div class="character-info">
+          <div class="character-portrait">
+            <img src="/api/placeholder/150/200" alt="Personaje">
+          </div>
+          <div class="stats-panel">
+            <h3 class="character-name">Nombre del Personaje</h3>
+            <div class="stat-bars">
+              <div class="stat-bar">
+                <label>HP</label>
+                <div class="progress-bar">
+                  <div class="progress-fill hp"></div>
+                </div>
+              </div>
+              <div class="stat-bar">
+                <label>XP</label>
+                <div class="progress-bar">
+                  <div class="progress-fill xp"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-panel">
+        <div class="story-content">
+          <h2 class="story-title">El Comienzo</h2>
+          <p class="story-text">Bienvenido al mundo de Axis, donde tus decisiones moldean tu destino. Tu viaje comienza en el reino místico del Bosque Eterno.</p>
+        </div>
+        <div class="decision-panel">
+          <button class="decision-button">Explorar las ruinas antiguas</button>
+          <button class="decision-button">Buscar la sabiduría de los espíritus del bosque</button>
+          <button class="decision-button">Seguir el sendero misterioso</button>
+        </div>
+      </div>
+
+      <div class="skill-panel hidden">
+        <h2 class="section-title">Habilidades</h2>
+        <div class="skill-tree">
+          <!-- Los nodos de habilidades se generarán dinámicamente -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
