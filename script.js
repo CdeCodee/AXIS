@@ -12,10 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const storyText = document.querySelector('.story-text');
   const decisionButtons = document.querySelectorAll('.decision-button');
 
-  // ohhhhhh siiii
-
-  // hjkjhkj
-  
   let selectedCharacter = null;
 
   // Configuración de imágenes con rutas absolutas
@@ -266,19 +262,101 @@ document.addEventListener('DOMContentLoaded', () => {
           ]);
           break;
 
-        case 'Cerrar la trampilla y explorar la casa':
-          storyTitle.textContent = 'Buscar otra salida';
-          storyText.textContent = `
+          case 'Abrir la puerta lateral':
+            storyTitle.textContent = 'Abrir la puerta lateral';
+            storyText.textContent = `
+                Lentamente empujas la puerta lateral, y esta se abre con un chirrido. Descubres un pequeño almacén lleno de 
+                cajas viejas y telarañas. En una de las cajas encuentras una linterna funcional. 
+                Justo cuando piensas que es seguro, escuchas pasos acercándose desde el pasillo. 
+                ¿Te escondes en el almacén o sales a enfrentarte a quien sea?
+            `;
+            updateDecisionButtons([
+                'Esconderse en el almacén',
+                'Salir a enfrentarse a quien sea'
+            ]);
+            break;
+
+          case 'Seguir explorando la casa':
+              storyTitle.textContent = 'Seguir explorando la casa';
+              storyText.textContent = `
+                  Decides ignorar la puerta lateral y continúas explorando la casa. Subes las escaleras y encuentras un 
+                  pasillo lleno de habitaciones. Algunas puertas están abiertas ligeramente, y otras parecen cerradas 
+                  con llave. Escuchas un susurro proveniente de una de las habitaciones. 
+                  ¿Sigues el susurro o buscas otra área de la casa para explorar?
+              `;
+              updateDecisionButtons([
+                  'Seguir el susurro',
+                  'Buscar otra área'
+              ]);
+              break;
+
+          case 'Esconderse en el almacén':
+              storyTitle.textContent = 'Esconderse en el almacén';
+              storyText.textContent = `
+                  Te ocultas detrás de las cajas, conteniendo la respiración mientras los pasos se acercan. 
+                  La puerta del almacén se abre lentamente, y una figura entra iluminando con una linterna. 
+                  ¿Te quedas en silencio y esperas que no te descubran o intentas salir corriendo?
+              `;
+              updateDecisionButtons([
+                  'Quedarse en silencio',
+                  'Salir corriendo'
+              ]);
+              break;
+
+          case 'Salir a enfrentarse a quien sea':
+              storyTitle.textContent = 'Salir a enfrentarse a quien sea';
+              storyText.textContent = `
+                  Tomas una profunda respiración y sales del almacén. En el pasillo, te encuentras con una persona desconocida 
+                  que parece igual de sorprendida que tú. Resulta ser otro visitante atrapado en la casa. 
+                  Deciden colaborar para encontrar una salida, pero escuchan un fuerte golpe proveniente del sótano. 
+                  ¿Investigan el sótano juntos o buscan otra salida por el piso superior?
+              `;
+              updateDecisionButtons([
+                  'Investigar el sótano',
+                  'Buscar otra salida por el piso superior'
+              ]);
+              break;
+
+          case 'Seguir el susurro':
+              storyTitle.textContent = 'Seguir el susurro';
+              storyText.textContent = `
+                  Sigues el susurro hasta una habitación al final del pasillo. Dentro, encuentras un diario antiguo sobre 
+                  una mesa, abierto en una página con extrañas inscripciones. Mientras intentas descifrar el texto, 
+                  una sombra se mueve detrás de ti. 
+                  ¿Te das la vuelta para enfrentar lo que sea o tomas el diario y huyes?
+              `;
+              updateDecisionButtons([
+                  'Darse la vuelta y prepararse para pelear',
+                  'Tomar el diario y huir'
+              ]);
+              break;
+
+          case 'Buscar otra área':
+              storyTitle.textContent = 'Buscar otra área';
+              storyText.textContent = `
+                  Ignoras el susurro y decides explorar otra parte de la casa. Llegas a una biblioteca polvorienta con 
+                  estanterías llenas de libros antiguos. Uno de los libros parece fuera de lugar y brilla débilmente. 
+                  ¿Lo tomas y lo abres o buscas pistas en otra parte de la biblioteca?
+              `;
+              updateDecisionButtons([
+                  'Tomar y abrir el libro',
+                  'Buscar pistas en la biblioteca'
+              ]);
+              break;
+
+          case 'Cerrar la trampilla y explorar la casa':
+            storyTitle.textContent = 'Buscar otra salida';
+            storyText.textContent = `
                           Decides alejarte de la trampilla y buscar una salida diferente. Caminas sigilosamente 
                           por los pasillos oscuros de la casa, notando que las puertas están cerradas y las ventanas 
                           bloqueadas. Sin embargo, encuentras una puerta lateral entreabierta. 
                           ¿Te arriesgas a abrirla o sigues explorando?
                       `;
-          updateDecisionButtons([
-            'Abrir la puerta lateral',
-            'Seguir explorando la casa'
-          ]);
-          break;
+            updateDecisionButtons([
+              'Abrir la puerta lateral',
+              'Seguir explorando la casa'
+            ]);
+            break;
 
         case 'Bajar por la escalera':
           storyTitle.textContent = 'Bajar por la escalera';
@@ -374,51 +452,6 @@ document.addEventListener('DOMContentLoaded', () => {
             'Intentar despertarse y seguir adelante',
             'Aprovechar el momento y descansar un poco'
           ]);
-          break;
-
-        case 'Intentar despertarse y seguir adelante':
-          storyTitle.textContent = 'Intentar despertarse y seguir adelante';
-          storyText.textContent = `
-                Luchas contra la sensación de desmayo, sacudiendo la cabeza y abriendo los ojos con esfuerzo. 
-                Te levantas lentamente, tambaleante, y te fijas en la dirección de la luz brillante que ves 
-                en la distancia. A medida que te acercas a ella, una sombra se perfila ante ti, una figura 
-                alta que parece caminar hacia ti con paso firme, sujetando un bate con ambas manos. La luz 
-                a su alrededor resalta aún más la silueta, y sientes un escalofrío recorrer tu espalda mientras 
-                te das cuenta de que no hay manera de escapar. 
-            `;
-
-          const currentHP2 = parseInt(hpBar.style.width);
-          hpBar.style.width = `${currentHP2 - 5}%`;
-
-          updateDecisionButtons([
-            'Levantarse y prepararse para lo que viene',
-            'Tratar de huir'
-          ]);
-          break;
-
-        case 'Aprovechar el momento y descansar un poco':
-          storyTitle.textContent = 'Aprovechar el momento y descansar un poco';
-          storyText.textContent = `
-                Exhausto por la caída, decides que es mejor descansar. Te tumbas en el suelo y cierras los ojos, 
-                pensando que has logrado escapar de todo lo que había arriba. El cansancio te vence rápidamente, 
-                y pronto te sumerges en un sueño profundo y reparador. Te dejas llevar por la tranquilidad, 
-                sin saber que no estás tan a salvo como creías.
-                
-                Mientras duermes, una oscura presencia se acerca lentamente, una entidad que habita en las profundidades 
-                de este lugar. Silenciosa, se aproxima sin que tú lo notes, y antes de que puedas despertar, te encuentra 
-                en tu sueño, el final ya inevitable. Todo termina aquí.
-            `;
-
-          const currentHP3 = parseInt(hpBar.style.width);
-          hpBar.style.width = '0%';
-
-          updateDecisionButtons([
-            'Juego terminado. Has sido derrotado por la entidad.'
-          ]);
-
-          break;
-        case 'Juego terminado. Has sido derrotado por la entidad.':
-          location.reload();
           break;
 
         case 'Volver arriba':
