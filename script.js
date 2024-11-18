@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const storyText = document.querySelector('.story-text');
   const decisionButtons = document.querySelectorAll('.decision-button');
 
+  // ohhhhhh siiii
+
   let selectedCharacter = null;
 
   // Configuración de imágenes con rutas absolutas
