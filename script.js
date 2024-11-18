@@ -12,7 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const storyText = document.querySelector('.story-text');
   const decisionButtons = document.querySelectorAll('.decision-button');
 
-// hjkjhkj
+  // ohhhhhh siiii
+
+  // hjkjhkj
   
   let selectedCharacter = null;
 
