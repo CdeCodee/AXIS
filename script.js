@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ohhhhhh siiii
 
+  // hjkjhkj
+  
   let selectedCharacter = null;
 
   // Configuración de imágenes con rutas absolutas
