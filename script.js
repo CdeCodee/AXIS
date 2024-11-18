@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ]);
           break;
 
-          case 'Abrir la puerta lateral':
+          case 'Abrir la puerta lateralllll':
             storyTitle.textContent = 'Abrir la puerta lateral';
             storyText.textContent = `
                 Lentamente empujas la puerta lateral, y esta se abre con un chirrido. Descubres un pequeño almacén lleno de 
