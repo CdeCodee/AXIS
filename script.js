@@ -574,19 +574,6 @@ document.addEventListener('DOMContentLoaded', () => {
           location.reload();
           break;
 
-        case 'Abrir la puerta lateral':
-          storyTitle.textContent = 'Abrir la puerta lateral';
-          storyText.textContent = `
-                        Abres la puerta lateral lentamente. La oscuridad detrás de ella es densa, pero una brisa fría 
-                        te golpea el rostro. Podría ser una salida al exterior, pero el crujido de ramas cercanas 
-                        te hace pensar que no estás solo. ¿Sales o te repliegas?
-                    `;
-          updateDecisionButtons([
-            'Salir por la puerta',
-            'Replegarse y buscar más'
-          ]);
-          break;
-
         case 'Seguir explorando la casa':
           storyTitle.textContent = 'Seguir explorando la casa';
           storyText.textContent = `
