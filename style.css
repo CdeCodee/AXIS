@@ -243,6 +243,8 @@ body {
 .story-text {
   line-height: 1.8;
   font-size: 1.2rem; /* Mayor legibilidad */
+  font-family: "Raleway", sans-serif;
+  
 }
 
 .decision-panel {
