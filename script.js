@@ -70,6 +70,92 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  function simulateCombat(playerType, playerChoice, enemyChoice) {
+    // Character-specific stats and combat rules
+    const characterStats = {
+      warrior: {
+        hp: 100,
+        damage: 15,
+        moves: {
+          rock: 'embestida',
+          paper: 'armadura',
+          scissors: 'espada'
+        }
+      },
+      mago: {
+        hp: 80,
+        damage: 10,
+        moves: {
+          rock: 'escombros',
+          paper: 'manta',
+          scissors: 'cortejo'
+        }
+      },
+      arquero: {
+        hp: 90,
+        damage: 12,
+        moves: {
+          rock: 'afilador',
+          paper: 'capucha',
+          scissors: 'flechazo'
+        }
+      }
+    };
+
+    // Validate inputs
+    if (!characterStats[playerType]) {
+      throw new Error('Invalid player type');
+    }
+
+    if (!['rock', 'paper', 'scissors'].includes(playerChoice) ||
+      !['rock', 'paper', 'scissors'].includes(enemyChoice)) {
+      throw new Error('Invalid choice');
+    }
+
+    // Determine winner using standard rock-paper-scissors logic
+    if (playerChoice === enemyChoice) {
+      return {
+        result: 'Empate',
+        playerMove: characterStats[playerType].moves[playerChoice],
+        enemyMove: characterStats[playerType].moves[enemyChoice],
+        playerHP: characterStats[playerType].hp,
+        playerDamage: 0
+      };
+    }
+
+    const winConditions = {
+      rock: 'scissors',
+      paper: 'rock',
+      scissors: 'paper'
+    };
+
+    const isPlayerWinner = winConditions[playerChoice] === enemyChoice;
+
+    return {
+      result: isPlayerWinner ? 'Victoria' : 'Derrota',
+      playerMove: characterStats[playerType].moves[playerChoice],
+      enemyMove: characterStats[playerType].moves[enemyChoice],
+      playerHP: isPlayerWinner ? characterStats[playerType].hp : characterStats[playerType].hp - characterStats[playerType].damage,
+      playerDamage: isPlayerWinner ? 0 : characterStats[playerType].damage
+    };
+  }
+
+  // Example usage demonstrating different character types
+  function demoFight() {
+    try {
+      console.log('Guerrero vs Enemigo:');
+      console.log(simulateCombat('warrior', 'rock', 'scissors'));
+
+      console.log('\nMago vs Enemigo:');
+      console.log(simulateCombat('mago', 'paper', 'rock'));
+
+      console.log('\nArquero vs Enemigo:');
+      console.log(simulateCombat('arquero', 'scissors', 'paper'));
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
   function startInitialStory() {
     storyTitle.textContent = 'Despertar en la Cabaña';
     const initialStory = `
@@ -182,8 +268,8 @@ document.addEventListener('DOMContentLoaded', () => {
           break;
 
         case 'Seguir corriendo sin parar':
-              storyTitle.textContent = 'Seguir corriendo sin parar';
-              storyText.textContent = `
+          storyTitle.textContent = 'Seguir corriendo sin parar';
+          storyText.textContent = `
                 Sigues corriendo desenfrenadamente, sin mirar atrás, tu respiración es errática y tus piernas 
                 se sienten cada vez más pesadas. En un momento de distracción, tropiezas con un árbol caído y caes 
                 al suelo, golpeándote la cabeza. La oscuridad te envuelve y pierdes el conocimiento. 
@@ -191,49 +277,49 @@ document.addEventListener('DOMContentLoaded', () => {
                 Te das cuenta de que has perdido mucha energía en la huida.
             `;
 
-              const currentHP4 = parseInt(hpBar.style.width);
-              hpBar.style.width = `${currentHP4 - 10}%`;  // Se reduce la salud debido al tropiezo
+          const currentHP4 = parseInt(hpBar.style.width);
+          hpBar.style.width = `${currentHP4 - 10}%`;  // Se reduce la salud debido al tropiezo
 
-              updateDecisionButtons([
-                'Recuperar fuerzas',
-                'Seguir caminando'
-            ]);
-            break;
+          updateDecisionButtons([
+            'Recuperar fuerzas',
+            'Seguir caminando'
+          ]);
+          break;
 
         case 'Recuperar fuerzas':
-            storyTitle.textContent = 'Recuperar fuerzas';
-            storyText.textContent = `
+          storyTitle.textContent = 'Recuperar fuerzas';
+          storyText.textContent = `
                 Te tomas unos minutos para respirar profundamente, calmando tu mente y cuerpo. Poco a poco, 
                 recuperas algo de energía. Aunque sigues agotado, te sientes un poco mejor, listo para continuar. 
                 Decides seguir adelante, aunque sabes que el peligro sigue cerca.
             `;
-        
-            const currentHP5 = parseInt(hpBar.style.width);
-            hpBar.style.width = `${Math.min(currentHP5 + 10, 100)}%`;  // Recupera un poco de vida
-        
-            updateDecisionButtons([
-                'Seguir adelante con más energía',
-                'Descansar un poco más antes de continuar'
-            ]);
-            break;
 
-          case 'Seguir caminando':
-                storyTitle.textContent = 'Seguir caminando';
-                storyText.textContent = `
+          const currentHP5 = parseInt(hpBar.style.width);
+          hpBar.style.width = `${Math.min(currentHP5 + 10, 100)}%`;  // Recupera un poco de vida
+
+          updateDecisionButtons([
+            'Seguir adelante con más energía',
+            'Descansar un poco más antes de continuar'
+          ]);
+          break;
+
+        case 'Seguir caminando':
+          storyTitle.textContent = 'Seguir caminando';
+          storyText.textContent = `
                     A pesar de la caída y el dolor en tu cuerpo, decides no perder más tiempo. Te levantas lentamente 
                     y sigues caminando, avanzando con cautela. Cada paso es más difícil que el anterior, pero sabes que 
                     no puedes quedarte ahí mucho tiempo. La tensión en el aire te dice que el peligro sigue cerca.
                 `;
-            
-                updateDecisionButtons([
-                    'Seguir avanzando a pesar del cansancio',
-                    'Detenerse a descansar un poco'
-                ]);
-                break;
 
-          case 'Detenerse y recuperar el aliento':
-                storyTitle.textContent = 'Detenerse y recuperar el aliento';
-                storyText.textContent = `
+          updateDecisionButtons([
+            'Seguir avanzando a pesar del cansancio',
+            'Detenerse a descansar un poco'
+          ]);
+          break;
+
+        case 'Detenerse y recuperar el aliento':
+          storyTitle.textContent = 'Detenerse y recuperar el aliento';
+          storyText.textContent = `
                     Te detienes un momento para recuperar el aliento, mientras tus pensamientos se centran en cómo 
                     escapar de quienes te perseguían. Sin embargo, a lo lejos, escuchas nuevamente los ruidos de tus 
                     perseguidores, aunque ahora están mucho más lejos. Parecen haber perdido el rastro, pero aún 
@@ -241,47 +327,47 @@ document.addEventListener('DOMContentLoaded', () => {
                     metálico sobresale de la tierra cerca de ti. Está parcialmente incrustado y parece estar 
                     cubierto de suciedad y musgo.
                 `;
-            
-                updateDecisionButtons([
-                    'Investigar el metal',
-                    'Ignorar el metal y seguir avanzando'
-                ]);
-                break;
-          
-          case 'Investigar el metal':
-              storyTitle.textContent = 'Investigar el metal';
-              storyText.textContent = `
+
+          updateDecisionButtons([
+            'Investigar el metal',
+            'Ignorar el metal y seguir avanzando'
+          ]);
+          break;
+
+        case 'Investigar el metal':
+          storyTitle.textContent = 'Investigar el metal';
+          storyText.textContent = `
                   Decides investigar el metal incrustado en el suelo. Al acercarte, notas que es un extraño 
                   artefacto antiguo, con símbolos que no logras entender. Al tocarlo, una extraña vibración recorre 
                   tu cuerpo, y un brillo tenue emerge de su superficie. De repente, el aire a tu alrededor se vuelve 
                   denso y pesado, y puedes escuchar una risa distante. Algo no está bien...
               `;
-          
-              // Puedes agregar una reducción de vida o un cambio en la historia aquí dependiendo de lo que quieras que pase
-              const currentHP6 = parseInt(hpBar.style.width);
-              hpBar.style.width = `${Math.max(currentHP6 - 5, 0)}%`;  // Reducir un poco de vida por el riesgo
-          
-              updateDecisionButtons([
-                  'Seguir explorando el artefacto',
-                  'Alejarse rápidamente y seguir caminando'
-              ]);
-              break;
 
-          case 'Ignorar el metal y seguir avanzando':
-              storyTitle.textContent = 'Ignorar el metal y seguir avanzando';
-              storyText.textContent = `
+          // Puedes agregar una reducción de vida o un cambio en la historia aquí dependiendo de lo que quieras que pase
+          const currentHP6 = parseInt(hpBar.style.width);
+          hpBar.style.width = `${Math.max(currentHP6 - 5, 0)}%`;  // Reducir un poco de vida por el riesgo
+
+          updateDecisionButtons([
+            'Seguir explorando el artefacto',
+            'Alejarse rápidamente y seguir caminando'
+          ]);
+          break;
+
+        case 'Ignorar el metal y seguir avanzando':
+          storyTitle.textContent = 'Ignorar el metal y seguir avanzando';
+          storyText.textContent = `
                   Decides que investigar el metal puede ser demasiado arriesgado y decides seguir avanzando. 
                   Con un último vistazo hacia el artefacto, te diriges hacia adelante, sin mirar atrás. 
                   Cada paso es más pesado, pero sabes que no puedes quedarte allí mucho tiempo. 
                   A lo lejos, el sonido de tus perseguidores comienza a desvanecerse.
               `;
-          
-              updateDecisionButtons([
-                  'Seguir adelante con determinación',
-                  'Buscar un lugar seguro para descansar'
-              ]);
-              break;
-          
+
+          updateDecisionButtons([
+            'Seguir adelante con determinación',
+            'Buscar un lugar seguro para descansar'
+          ]);
+          break;
+
         case 'Esconderse en el bosque':
           storyTitle.textContent = 'Esconderse en el bosque';
           storyText.textContent = `
@@ -363,101 +449,101 @@ document.addEventListener('DOMContentLoaded', () => {
           ]);
           break;
 
-          case 'Abrir la puerta lateral':
-            storyTitle.textContent = 'Abrir la puerta lateral';
-            storyText.textContent = `
+        case 'Abrir la puerta lateral':
+          storyTitle.textContent = 'Abrir la puerta lateral';
+          storyText.textContent = `
                 Lentamente empujas la puerta lateral, y esta se abre con un chirrido. Descubres un pequeño almacén lleno de 
                 cajas viejas y telarañas. En una de las cajas encuentras una linterna funcional. 
                 Justo cuando piensas que es seguro, escuchas pasos acercándose desde el pasillo. 
                 ¿Te escondes en el almacén o sales a enfrentarte a quien sea?
             `;
-            updateDecisionButtons([
-                'Esconderse en el almacén',
-                'Salir a enfrentarse a quien sea'
-            ]);
-            break;
+          updateDecisionButtons([
+            'Esconderse en el almacén',
+            'Salir a enfrentarse a quien sea'
+          ]);
+          break;
 
-          case 'Seguir explorando la casa':
-              storyTitle.textContent = 'Seguir explorando la casa';
-              storyText.textContent = `
+        case 'Seguir explorando la casa':
+          storyTitle.textContent = 'Seguir explorando la casa';
+          storyText.textContent = `
                   Decides ignorar la puerta lateral y continúas explorando la casa. Subes las escaleras y encuentras un 
                   pasillo lleno de habitaciones. Algunas puertas están abiertas ligeramente, y otras parecen cerradas 
                   con llave. Escuchas un susurro proveniente de una de las habitaciones. 
                   ¿Sigues el susurro o buscas otra área de la casa para explorar?
               `;
-              updateDecisionButtons([
-                  'Seguir el susurro',
-                  'Buscar otra área'
-              ]);
-              break;
+          updateDecisionButtons([
+            'Seguir el susurro',
+            'Buscar otra área'
+          ]);
+          break;
 
-          case 'Esconderse en el almacén':
-              storyTitle.textContent = 'Esconderse en el almacén';
-              storyText.textContent = `
+        case 'Esconderse en el almacén':
+          storyTitle.textContent = 'Esconderse en el almacén';
+          storyText.textContent = `
                   Te ocultas detrás de las cajas, conteniendo la respiración mientras los pasos se acercan. 
                   La puerta del almacén se abre lentamente, y una figura entra iluminando con una linterna. 
                   ¿Te quedas en silencio y esperas que no te descubran o intentas salir corriendo?
               `;
-              updateDecisionButtons([
-                  'Quedarse en silencio',
-                  'Salir corriendo'
-              ]);
-              break;
+          updateDecisionButtons([
+            'Quedarse en silencio',
+            'Salir corriendo'
+          ]);
+          break;
 
-          case 'Salir a enfrentarse a quien sea':
-              storyTitle.textContent = 'Salir a enfrentarse a quien sea';
-              storyText.textContent = `
+        case 'Salir a enfrentarse a quien sea':
+          storyTitle.textContent = 'Salir a enfrentarse a quien sea';
+          storyText.textContent = `
                   Tomas una profunda respiración y sales del almacén. En el pasillo, te encuentras con una persona desconocida 
                   que parece igual de sorprendida que tú. Resulta ser otro visitante atrapado en la casa. 
                   Deciden colaborar para encontrar una salida, pero escuchan un fuerte golpe proveniente del sótano. 
                   ¿Investigan el sótano juntos o buscan otra salida por el piso superior?
               `;
-              updateDecisionButtons([
-                  'Investigar el sótano',
-                  'Buscar otra salida por el piso superior'
-              ]);
-              break;
+          updateDecisionButtons([
+            'Investigar el sótano',
+            'Buscar otra salida por el piso superior'
+          ]);
+          break;
 
-          case 'Seguir el susurro':
-              storyTitle.textContent = 'Seguir el susurro';
-              storyText.textContent = `
+        case 'Seguir el susurro':
+          storyTitle.textContent = 'Seguir el susurro';
+          storyText.textContent = `
                   Sigues el susurro hasta una habitación al final del pasillo. Dentro, encuentras un diario antiguo sobre 
                   una mesa, abierto en una página con extrañas inscripciones. Mientras intentas descifrar el texto, 
                   una sombra se mueve detrás de ti. 
                   ¿Te das la vuelta para enfrentar lo que sea o tomas el diario y huyes?
               `;
-              updateDecisionButtons([
-                  'Darse la vuelta y prepararse para pelear',
-                  'Tomar el diario y huir'
-              ]);
-              break;
+          updateDecisionButtons([
+            'Darse la vuelta y prepararse para pelear',
+            'Tomar el diario y huir'
+          ]);
+          break;
 
-          case 'Buscar otra área':
-              storyTitle.textContent = 'Buscar otra área';
-              storyText.textContent = `
+        case 'Buscar otra área':
+          storyTitle.textContent = 'Buscar otra área';
+          storyText.textContent = `
                   Ignoras el susurro y decides explorar otra parte de la casa. Llegas a una biblioteca polvorienta con 
                   estanterías llenas de libros antiguos. Uno de los libros parece fuera de lugar y brilla débilmente. 
                   ¿Lo tomas y lo abres o buscas pistas en otra parte de la biblioteca?
               `;
-              updateDecisionButtons([
-                  'Tomar y abrir el libro',
-                  'Buscar pistas en la biblioteca'
-              ]);
-              break;
+          updateDecisionButtons([
+            'Tomar y abrir el libro',
+            'Buscar pistas en la biblioteca'
+          ]);
+          break;
 
-          case 'Cerrar la trampilla y explorar la casa':
-            storyTitle.textContent = 'Buscar otra salida';
-            storyText.textContent = `
+        case 'Cerrar la trampilla y explorar la casa':
+          storyTitle.textContent = 'Buscar otra salida';
+          storyText.textContent = `
                           Decides alejarte de la trampilla y buscar una salida diferente. Caminas sigilosamente 
                           por los pasillos oscuros de la casa, notando que las puertas están cerradas y las ventanas 
                           bloqueadas. Sin embargo, encuentras una puerta lateral entreabierta. 
                           ¿Te arriesgas a abrirla o sigues explorando?
                       `;
-            updateDecisionButtons([
-              'Abrir la puerta lateral',
-              'Seguir explorando la casa'
-            ]);
-            break;
+          updateDecisionButtons([
+            'Abrir la puerta lateral',
+            'Seguir explorando la casa'
+          ]);
+          break;
 
         case 'Bajar por la escalera':
           storyTitle.textContent = 'Bajar por la escalera';
@@ -519,6 +605,74 @@ document.addEventListener('DOMContentLoaded', () => {
           ]);
           break;
 
+        case 'Prepararse para pelear':
+          storyTitle.textContent = 'Prepararse para pelear';
+          storyText.textContent = `
+                Te preparas para enfrentar a la sombra amenazante. Sientes la adrenalina recorriendo tu cuerpo mientras te pones en posición de combate.
+                Una extraña energía comienza a rodear tu cuerpo, y sabes que debes elegir tu movimiento sabiamente para sobrevivir.
+            `;
+
+          // Simular un movimiento aleatorio para el enemigo
+          const enemyMoves = ['rock', 'paper', 'scissors'];
+          const enemyChoice = enemyMoves[Math.floor(Math.random() * enemyMoves.length)];
+
+          // Usar el personaje seleccionado previamente
+          const playerType = selectedCharacter.dataset.class;
+
+          // Simular combate
+          const combatResult = simulateCombat(playerType, 'rock', enemyChoice);
+
+          // Actualizar el texto de la historia basado en el resultado
+          if (combatResult.result === 'Victoria') {
+            storyTitle.textContent = '¡Victoria!';
+            storyText.textContent = `
+                    Con un movimiento rápido y certero, logras derrotar a la sombra amenazante. 
+                    Tu ${combatResult.playerMove} destruye el ataque enemigo (${combatResult.enemyMove}).
+                    Una luz brillante inunda la habitación, marcando el final de tu desafío.
+                    
+                    ¡Has sobrevivido y triunfado en esta terrible aventura!
+                `;
+
+            updateDecisionButtons([
+              'Celebrar la victoria'
+            ]);
+          } else {
+            storyTitle.textContent = 'Derrota';
+            storyText.textContent = `
+                    A pesar de tus esfuerzos, la sombra es demasiado poderosa. 
+                    Tu ${combatResult.playerMove} no logra detener el ataque enemigo (${combatResult.enemyMove}).
+                    Recibes un golpe devastador que te deja sin fuerzas.
+                    
+                    La oscuridad te consume, y tu aventura termina aquí.
+                `;
+
+            // Establecer la barra de HP a 0
+            hpBar.style.width = '0%';
+
+            updateDecisionButtons([
+              'Reiniciar la historia'
+            ]);
+          }
+          break;
+
+        case 'Celebrar la victoria':
+          // Agregar una escena final o reiniciar
+          storyTitle.textContent = 'Fin de la Aventura';
+          storyText.textContent = `
+                Has superado todos los desafíos y sobrevivido a la terrible aventura.
+                Tu valentía y habilidad te han llevado a la victoria.
+                
+                Felicidades, héroe!
+            `;
+          updateDecisionButtons([
+            'Reiniciar la historia'
+          ]);
+          break;
+
+        case 'Reiniciar la historia':
+          location.reload();
+          break;
+
         case 'Tratar de huir':
           storyTitle.textContent = 'Tratar de huir';
           storyText.textContent = `
@@ -555,7 +709,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ]);
           break;
 
-          case 'Intentar despertarse y seguir adelante':
+        case 'Intentar despertarse y seguir adelante':
           storyTitle.textContent = 'Intentar despertarse y seguir adelante';
           storyText.textContent = `
                 Luchas contra la sensación de desmayo, sacudiendo la cabeza y abriendo los ojos con esfuerzo. 
