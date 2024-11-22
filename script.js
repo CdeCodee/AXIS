@@ -605,55 +605,65 @@ document.addEventListener('DOMContentLoaded', () => {
           ]);
           break;
 
-        case 'Prepararse para pelear':
-          storyTitle.textContent = 'Prepararse para pelear';
-          storyText.textContent = `
-                Te preparas para enfrentar a la sombra amenazante. Sientes la adrenalina recorriendo tu cuerpo mientras te pones en posición de combate.
-                Una extraña energía comienza a rodear tu cuerpo, y sabes que debes elegir tu movimiento sabiamente para sobrevivir.
+          case 'Prepararse para pelear':
+            storyTitle.textContent = 'Prepararse para pelear';
+            storyText.textContent = `
+              Te preparas para enfrentar a la sombra amenazante. Sientes la adrenalina recorriendo tu cuerpo mientras te pones en posición de combate.
+              Una extraña energía comienza a rodear tu cuerpo, y sabes que debes elegir tu movimiento sabiamente para sobrevivir.
             `;
-
-          // Simular un movimiento aleatorio para el enemigo
-          const enemyMoves = ['rock', 'paper', 'scissors'];
-          const enemyChoice = enemyMoves[Math.floor(Math.random() * enemyMoves.length)];
-
-          // Usar el personaje seleccionado previamente
-          const playerType = selectedCharacter.dataset.class;
-
-          // Simular combate
-          const combatResult = simulateCombat(playerType, 'rock', enemyChoice);
-
-          // Actualizar el texto de la historia basado en el resultado
-          if (combatResult.result === 'Victoria') {
-            storyTitle.textContent = '¡Victoria!';
-            storyText.textContent = `
-                    Con un movimiento rápido y certero, logras derrotar a la sombra amenazante. 
-                    Tu ${combatResult.playerMove} destruye el ataque enemigo (${combatResult.enemyMove}).
-                    Una luz brillante inunda la habitación, marcando el final de tu desafío.
-                    
-                    ¡Has sobrevivido y triunfado en esta terrible aventura!
-                `;
-
-            updateDecisionButtons([
-              'Celebrar la victoria'
-            ]);
-          } else {
-            storyTitle.textContent = 'Derrota';
-            storyText.textContent = `
-                    A pesar de tus esfuerzos, la sombra es demasiado poderosa. 
-                    Tu ${combatResult.playerMove} no logra detener el ataque enemigo (${combatResult.enemyMove}).
-                    Recibes un golpe devastador que te deja sin fuerzas.
-                    
-                    La oscuridad te consume, y tu aventura termina aquí.
-                `;
-
-            // Establecer la barra de HP a 0
-            hpBar.style.width = '0%';
-
-            updateDecisionButtons([
-              'Reiniciar la historia'
-            ]);
-          }
-          break;
+          
+            // Generar elección aleatoria del enemigo
+            const enemyMoves = ['rock', 'paper', 'scissors'];
+            const enemyChoice = enemyMoves[Math.floor(Math.random() * enemyMoves.length)];
+          
+            // Obtener el tipo de jugador y su movimiento
+            const playerType = selectedCharacter.dataset.class;
+            const playerMove = getPlayerMove(playerType); // Función que retorna el movimiento del jugador según su clase
+          
+            // Simular el combate
+            const combatResult = simulateCombat(playerType, playerMove, enemyChoice);
+          
+            // Actualizar el texto de la historia basado en el resultado
+            if (combatResult.result === 'Victoria') {
+              storyTitle.textContent = '¡Victoria!';
+              storyText.textContent = `
+                Con un movimiento rápido y certero, logras derrotar a la sombra amenazante. 
+                Tu ${combatResult.playerMove} destruye el ataque enemigo (${combatResult.enemyMove}).
+                Una luz brillante inunda la habitación, marcando el final de tu desafío.
+                
+                ¡Has sobrevivido y triunfado en esta terrible aventura!
+              `;
+              updateDecisionButtons(['Celebrar la victoria']);
+            } else {
+              storyTitle.textContent = 'Derrota';
+              storyText.textContent = `
+                A pesar de tus esfuerzos, la sombra es demasiado poderosa. 
+                Tu ${combatResult.playerMove} no logra detener el ataque enemigo (${combatResult.enemyMove}).
+                Recibes un golpe devastador que te deja sin fuerzas.
+                
+                La oscuridad te consume, y tu aventura termina aquí.
+              `;
+          
+              // Establecer la barra de HP a 0
+              hpBar.style.width = '0%';
+              updateDecisionButtons(['Reiniciar la historia']);
+            }
+            break;
+          
+          // Ejemplo de la función getPlayerMove:
+          function getPlayerMove(playerType) {
+            switch (playerType) {
+              case 'warrior':
+                return 'rock'; // Por ahora, un movimiento predeterminado
+              case 'mage':
+                return 'paper';
+              case 'rogue':
+                return 'scissors';
+              default:
+                console.error('Tipo de personaje desconocido:', playerType);
+                return 'rock'; // Valor predeterminado en caso de error
+            }
+          }          
 
         case 'Celebrar la victoria':
           // Agregar una escena final o reiniciar
