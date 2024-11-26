@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ]);
           break;
 
-        case 'Seguir corriendo sin parar':
+        case 'Keep running without stopping':
           storyTitle.textContent = 'Keep running without stopping';
           storyText.textContent = `
                 You continue running wildly, without looking back, your breathing is erratic and your legs 
@@ -604,47 +604,21 @@ document.addEventListener('DOMContentLoaded', () => {
           case 'Prepare for the battle':
             storyTitle.textContent = 'Prepare for the battle';
             storyText.textContent = `
-                You prepare to face the threatening shadow. You feel the adrenaline rushing through your body as you get into a combat stance.
-              A strange energy begins to surround your body, and you know you must choose your movement wisely to survive.
+                You prepare to face the threatening shadow. You feel the adrenaline rushing through your body as you get into a combat stance. 
+                However, just as you're about to attack, the figure raises its hands and shouts, "Wait! I'm not your enemy."
+                It turns out to be another man trapped in the house, desperately searching for a way out. He explains that he has been exploring 
+                and discovered a secret passage leading outside.
+                
+                Together, you navigate the dark and narrow passage, confronting the fear of the unknown. Finally, you reach the light of day. 
+                As you step outside, both of you breathe deeply, relieved to have escaped alive. You promise never to return to the house, 
+                but you feel that this experience has changed you forever.
+                
+                The adventure is over... for now.
             `;
-          
-            // Generar elección aleatoria del enemigo
-            const enemyMoves = ['rock', 'paper', 'scissors'];
-            const enemyChoice = enemyMoves[Math.floor(Math.random() * enemyMoves.length)];
-          
-            // Obtener el tipo de jugador y su movimiento
-            const playerType = selectedCharacter.dataset.class;
-            const playerMove = getPlayerMove(playerType); // Función que retorna el movimiento del jugador según su clase
-          
-            // Simular el combate
-            const combatResult = simulateCombat(playerType, playerMove, enemyChoice);
-          
-            // Actualizar el texto de la historia basado en el resultado
-            if (combatResult.result === 'Victoria') {
-              storyTitle.textContent = '¡Victoria!';
-              storyText.textContent = `
-                With a quick and accurate movement, you manage to defeat the threatening shadow. 
-                You ${combatResult.playerMove} destroy the attack (${combatResult.enemyMove}).
-               A bright light floods the room, marking the end of your challenge.
-                
-               You have survived and triumphed in this terrible adventure!
-              `;
-              updateDecisionButtons(['Celebrate victory']);
-            } else {
-              storyTitle.textContent = 'Defeat';
-              storyText.textContent = `
-                Despite your efforts, the shadow is too powerful.
-                You ${combatResult.playerMove} fails to stop the enemy attack (${combatResult.enemyMove}).
-                You receive a devastating blow that leaves you powerless.
-                
-                The darkness consumes you, and your adventure ends here.
-              `;
-          
-              // Establecer la barra de HP a 0
-              hpBar.style.width = '0%';
-              updateDecisionButtons(['Restart the story']);
-            }
-            break;
+            updateDecisionButtons([
+              'Celebrate victory'
+            ]);
+          break;
           
           // Ejemplo de la función getPlayerMove:
           function getPlayerMove(playerType) {
@@ -662,24 +636,10 @@ document.addEventListener('DOMContentLoaded', () => {
           }          
 
         case 'Celebrate victory':
-          // Agregar una escena final o reiniciar
-          storyTitle.textContent = 'End of the adventure';
-          storyText.textContent = `
-                You have overcome all the challenges and survived the terrible adventure.
-                Your bravery and skill have led you to victory.
-                
-                Congratulations, hero!
-            `;
-          updateDecisionButtons([
-            'Restart the story'
-          ]);
-          break;
-
-        case 'Restart the story':
           location.reload();
           break;
 
-        case 'Tratar de huir':
+        case 'Try to escape':
           storyTitle.textContent = 'Try to escape';
           storyText.textContent = `
              In a desperate attempt, you turn on your heels and start running. Your footsteps echo down the hallway as you frantically search for a place to hide or escape. However, despite your efforts, you can't find any way out or shelter. The walls seem to close around you, and the shadow moves quickly, closer and closer. 
