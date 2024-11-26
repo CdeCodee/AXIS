@@ -157,25 +157,25 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function startInitialStory() {
-    storyTitle.textContent = 'Despertar en la Cabaña';
+    storyTitle.textContent = 'Wake up in the cabin';
     const initialStory = `
-          Despiertas aturdido en una cabaña oscura y húmeda del Bosque Eterno. Tu cabeza palpita mientras 
-          tus ojos se adaptan a la penumbra. Los últimos recuerdos son confusos: estabas siguiendo una 
-          pista sobre antiguos tesoros cuando todo se volvió negro.
+          You wake up dazed in a dark, dank cabin in the Eternal Forest. Your head throbs while 
+          your eyes adapt to the darkness. The last memories are confusing: you were following a 
+          clue to ancient treasures when everything went black.
 
-          Ahora te encuentras atado a una silla, pero las cuerdas están lo suficientemente flojas como 
-          para liberarte con algo de esfuerzo. A través de la débil luz que se filtra por las ventanas 
-          cubiertas de polvo, puedes distinguir siluetas de muebles viejos y herramientas oxidadas.
-
-          Escuchas pasos ocasionales en el exterior de la cabaña, lo que indica que hay alguien vigilando. 
-          El tiempo es esencial, y debes tomar una decisión rápida sobre cómo escapar.
+          Now you find yourself tied to a chair, but the ropes are loose enough to 
+          to free yourself with some effort. Through the weak light that filters through the windows 
+          covered in dust, you can make out silhouettes of old furniture and rusty tools.
+          
+          You hear occasional footsteps outside the cabin, indicating that someone is watching. 
+          Time is of the essence, and you must make a quick decision on how to escape.
       `;
     storyText.textContent = initialStory.trim();
 
     // Actualizar los botones de decisión
     updateDecisionButtons([
-      'Buscar sigilosamente una salida',
-      'Romper la ventana y escapar'
+      'Wait for the battle',
+      'Break the window and escape'
     ]);
   }
 
@@ -195,152 +195,150 @@ document.addEventListener('DOMContentLoaded', () => {
       const decision = e.target.textContent;
 
       switch (decision) {
-        case 'Buscar sigilosamente una salida':
-          storyTitle.textContent = 'Buscar sigilosamente una salida';
+        case 'Wait for the battle':
+          storyTitle.textContent = 'Wait for the battle';
           storyText.textContent = `
-                      Te mueves con cautela por la cabaña, procurando que las tablas del suelo no crujan 
-                      bajo tus pies. Tras una inspección minuciosa, descubres una pequeña trampilla 
-                      parcialmente oculta bajo una alfombra vieja. Podría ser tu ruta de escape, pero 
-                      también podría ser una trampa.
+                      You move cautiously around the cabin, making sure the floorboards don't creak. 
+                      under your feet. Upon close inspection, you discover a small trapdoor 
+                      partially hidden under an old rug. It could be your escape route, but 
+                      It could also be a trap.
                   `;
           updateDecisionButtons([
-            'Investigar la trampilla',
-            'Buscar otra salida'
+            'Investigate the trapdoor',
+            'Search for another exit'
           ]);
           break;
 
-        case 'Romper la ventana y escapar':
-          storyTitle.textContent = 'Romper la ventana y escapar';
+        case 'Break the window and escape':
+          storyTitle.textContent = 'Break the window and escape';
           storyText.textContent = `
-                Con un movimiento rápido, tomas una silla vieja y la arrojas contra la ventana más 
-                cercana. El cristal se hace añicos con un estruendo que rompe el silencio del bosque. 
-                Inmediatamente escuchas gritos y pasos apresurados acercándose a la cabaña.
+                In one swift movement, you pick up an old chair and throw it against the closest window. 
+                close. The glass shatters with a crash that breaks the silence of the forest. 
+                You immediately hear shouts and hurried footsteps approaching the cabin.
             `;
           // Reducir HP por el riesgo tomado
           const currentHP = parseInt(hpBar.style.width);
           hpBar.style.width = `${currentHP - 20}%`;
 
           updateDecisionButtons([
-            'Correr hacia el bosque',
-            'Prepararte para el combate'
+            'Run into the forest',
+            'Prepare for the combat'
           ]);
           break;
 
-        case 'Correr hacia el bosque':
-          storyTitle.textContent = 'Correr hacia el bosque';
+        case 'Run into the forest':
+          storyTitle.textContent = 'Run into the forest';
           storyText.textContent = `
-                Decides huir hacia el bosque, corriendo a toda velocidad entre los árboles. El suelo es irregular 
-                y las ramas crujen bajo tus pies, pero debes mantener el ritmo. A lo lejos, escuchas que te siguen, 
-                pero el sonido se pierde entre el viento y las hojas. ¿Sigues corriendo o intentas esconderte?
-            `;
+                You decide to flee towards the forest, running at full speed through the trees. The ground is uneven 
+                and the branches creak under your feet, but you must keep up. In the distance, you hear them following you, 
+                but the sound is lost between the wind and the leaves. Do you keep running or try to hide?            `;
           updateDecisionButtons([
-            'Seguir corriendo',
-            'Esconderse en el bosque'
+            'Keep running',
+            'Hide on the forest'
           ]);
           break;
 
-        case 'Prepararte para el combate':
-          storyTitle.textContent = 'Prepararte para el combate';
+        case 'Prepare for the combat':
+          storyTitle.textContent = 'Wait for the battle';
           storyText.textContent = `
-                No hay tiempo para huir. Te preparas para enfrentarte a lo que sea que venga. Rápidamente 
-                encuentras un objeto contundente cerca de la ventana rota. Los pasos se acercan cada vez más, 
-                y puedes sentir la tensión en el aire. Estás listo para luchar, pero algo te dice que quizás 
-                deberías buscar un mejor lugar para emboscar a tus perseguidores.
+                There is no time to run away. You prepare to face whatever comes. Quickly 
+                You find a blunt object near the broken window. The footsteps get closer and closer, 
+                and you can feel the tension in the air. You're ready to fight, but something tells you that maybe 
+                you should look for a better place to ambush your pursuers.
             `;
           updateDecisionButtons([
-            'Esperar el enfrentamiento',
-            'Moverse para emboscar'
+            'Wait for the battle',
+            'Move to ambush'
           ]);
           break;
 
-        case 'Seguir corriendo':
-          storyTitle.textContent = 'Seguir corriendo';
+        case 'Keep running':
+          storyTitle.textContent = 'Keep running';
           storyText.textContent = `
-                Con el corazón acelerado, sigues corriendo sin mirar atrás. El bosque se vuelve más denso, 
-                y cada paso se siente más pesado. A pesar de todo, comienzas a notar que los sonidos de tus 
-                perseguidores se desvanecen, tal vez estás logrando dejarlos atrás. ¿Sigues corriendo o te 
-                detienes para recuperar el aliento?
-            `;
+                With your heart racing, you continue running without looking back. The forest becomes denser, 
+                and every step feels heavier. Despite everything, you begin to notice that the sounds of your 
+                pursuers fade away, perhaps you are managing to leave them behind. Do you keep running or 
+                Do you stop to catch your breath?            `;
           updateDecisionButtons([
-            'Seguir corriendo sin parar',
-            'Detenerse y recuperar el aliento'
+            'Keep running without stopping',
+            'Stop and recover your breath'
           ]);
           break;
 
         case 'Seguir corriendo sin parar':
-          storyTitle.textContent = 'Seguir corriendo sin parar';
+          storyTitle.textContent = 'Keep running without stopping';
           storyText.textContent = `
-                Sigues corriendo desenfrenadamente, sin mirar atrás, tu respiración es errática y tus piernas 
-                se sienten cada vez más pesadas. En un momento de distracción, tropiezas con un árbol caído y caes 
-                al suelo, golpeándote la cabeza. La oscuridad te envuelve y pierdes el conocimiento. 
-                Después de unos 10 minutos, despiertas desorientado, con un dolor punzante en la cabeza. 
-                Te das cuenta de que has perdido mucha energía en la huida.
+                You continue running wildly, without looking back, your breathing is erratic and your legs 
+                They feel heavier and heavier. In a moment of distraction, you trip over a fallen tree and fall 
+                to the ground, hitting your head. Darkness envelops you and you lose consciousness. 
+                After about 10 minutes, you wake up disoriented, with a throbbing pain in your head. 
+                You realize that you have lost a lot of energy in the flight.
             `;
 
           const currentHP4 = parseInt(hpBar.style.width);
           hpBar.style.width = `${currentHP4 - 10}%`;  // Se reduce la salud debido al tropiezo
 
           updateDecisionButtons([
-            'Recuperar fuerzas',
-            'Seguir caminando'
+            'Recover energy',
+            'Keep walking'
           ]);
           break;
 
-        case 'Recuperar fuerzas':
-          storyTitle.textContent = 'Recuperar fuerzas';
+        case 'Recover energy':
+          storyTitle.textContent = 'Recover energy';
           storyText.textContent = `
-                Te tomas unos minutos para respirar profundamente, calmando tu mente y cuerpo. Poco a poco, 
-                recuperas algo de energía. Aunque sigues agotado, te sientes un poco mejor, listo para continuar. 
-                Decides seguir adelante, aunque sabes que el peligro sigue cerca.
+                You take a few minutes to breathe deeply, calming your mind and body. Little by little, 
+                you regain some energy. Although you are still exhausted, you feel a little better, ready to continue. 
+                You decide to move forward, although you know that danger is still close.
             `;
 
           const currentHP5 = parseInt(hpBar.style.width);
           hpBar.style.width = `${Math.min(currentHP5 + 10, 100)}%`;  // Recupera un poco de vida
 
           updateDecisionButtons([
-            'Seguir adelante con más energía',
-            'Descansar un poco más antes de continuar'
+            'Move forward with more energy',
+            'Rest a little more before continue'
           ]);
           break;
 
-        case 'Seguir caminando':
-          storyTitle.textContent = 'Seguir caminando';
+        case 'Keep walking':
+          storyTitle.textContent = 'Keep walking';
           storyText.textContent = `
-                    A pesar de la caída y el dolor en tu cuerpo, decides no perder más tiempo. Te levantas lentamente 
-                    y sigues caminando, avanzando con cautela. Cada paso es más difícil que el anterior, pero sabes que 
-                    no puedes quedarte ahí mucho tiempo. La tensión en el aire te dice que el peligro sigue cerca.
+                    Despite the fall and the pain in your body, you decide not to waste any more time. You get up slowly 
+                    and you continue walking, advancing cautiously. Each step is more difficult than the last, but you know that 
+                    You can't stay there for long. The tension in the air tells you that danger is still close.
                 `;
 
           updateDecisionButtons([
-            'Seguir avanzando a pesar del cansancio',
-            'Detenerse a descansar un poco'
+            'Keep moving forward despite fatigue',
+            'Stop to take a rest'
           ]);
           break;
 
-        case 'Detenerse y recuperar el aliento':
-          storyTitle.textContent = 'Detenerse y recuperar el aliento';
+        case 'Stop and recover your breath':
+          storyTitle.textContent = 'Stop and recover your breath';
           storyText.textContent = `
-                    Te detienes un momento para recuperar el aliento, mientras tus pensamientos se centran en cómo 
-                    escapar de quienes te perseguían. Sin embargo, a lo lejos, escuchas nuevamente los ruidos de tus 
-                    perseguidores, aunque ahora están mucho más lejos. Parecen haber perdido el rastro, pero aún 
-                    no puedes relajarte del todo. Mientras te recuperas, algo extraño llama tu atención: un objeto 
-                    metálico sobresale de la tierra cerca de ti. Está parcialmente incrustado y parece estar 
-                    cubierto de suciedad y musgo.
+                    You stop for a moment to catch your breath, your thoughts focusing on how 
+                    escape from those who were chasing you. However, in the distance, you hear again the noises of your 
+                    pursuers, although now they are much further away. They seem to have lost the trail, but still 
+                    You can't relax at all. While you recover, something strange catches your attention: an object 
+                    Metal sticks out of the ground near you. It is partially embedded and appears to be 
+                    covered in dirt and moss.
                 `;
 
           updateDecisionButtons([
-            'Investigar el metal',
-            'Ignorar el metal y seguir avanzando'
+            'Investigate the metal',
+            'Ignore the metal and keep moving forward'
           ]);
           break;
 
-        case 'Investigar el metal':
-          storyTitle.textContent = 'Investigar el metal';
+        case 'Investigate the metal':
+          storyTitle.textContent = 'Investigate the metal';
           storyText.textContent = `
-                  Decides investigar el metal incrustado en el suelo. Al acercarte, notas que es un extraño 
-                  artefacto antiguo, con símbolos que no logras entender. Al tocarlo, una extraña vibración recorre 
-                  tu cuerpo, y un brillo tenue emerge de su superficie. De repente, el aire a tu alrededor se vuelve 
-                  denso y pesado, y puedes escuchar una risa distante. Algo no está bien...
+                  You decide to investigate the metal embedded in the ground. As you approach, you notice that it is a stranger 
+                  ancient artifact, with symbols that you can't understand. When you touch it, a strange vibration runs through 
+                  your body, and a faint glow emerges from its surface. Suddenly the air around you becomes 
+                  dense and heavy, and you can hear distant laughter. Something is not right...
               `;
 
           // Puedes agregar una reducción de vida o un cambio en la historia aquí dependiendo de lo que quieras que pase
@@ -348,268 +346,266 @@ document.addEventListener('DOMContentLoaded', () => {
           hpBar.style.width = `${Math.max(currentHP6 - 5, 0)}%`;  // Reducir un poco de vida por el riesgo
 
           updateDecisionButtons([
-            'Seguir explorando el artefacto',
-            'Alejarse rápidamente y seguir caminando'
+            'Continue studying the artifact',
+            'Walk away quickly and keep walking'
           ]);
           break;
 
-        case 'Ignorar el metal y seguir avanzando':
-          storyTitle.textContent = 'Ignorar el metal y seguir avanzando';
+        case 'Ignore the metal and keep moving forward':
+          storyTitle.textContent = 'Ignore the metal and keep moving forward';
           storyText.textContent = `
-                  Decides que investigar el metal puede ser demasiado arriesgado y decides seguir avanzando. 
-                  Con un último vistazo hacia el artefacto, te diriges hacia adelante, sin mirar atrás. 
-                  Cada paso es más pesado, pero sabes que no puedes quedarte allí mucho tiempo. 
-                  A lo lejos, el sonido de tus perseguidores comienza a desvanecerse.
+                 You decide that Investigate the metal may be too risky and decide to keep moving forward. 
+                  With one last glance at the artifact, you head forward, not looking back. 
+                  Each step is heavier, but you know you can't stay there for long. 
+                  In the distance, the sound of your pursuers begins to fade.
               `;
 
           updateDecisionButtons([
-            'Seguir adelante con determinación',
-            'Buscar un lugar seguro para descansar'
+            'Move forward with determination',
+            'Find a safe place to rest'
           ]);
           break;
 
-        case 'Esconderse en el bosque':
-          storyTitle.textContent = 'Esconderse en el bosque';
+        case 'Hide in the forest':
+          storyTitle.textContent = 'Hide in the forest';
           storyText.textContent = `
-                Decides que no podrás correr por siempre, así que buscas un lugar para esconderte. Tras un árbol 
-                frondoso y un montículo de hojas, te agachas intentando controlar tu respiración. Los sonidos de 
-                tus perseguidores se acercan, pero te quedas inmóvil. ¿Sigues escondido o aprovechas para 
-                intentar contraatacar?
+                You decide you won't be able to run forever, so you look for a place to hide. behind a tree 
+                leafy and a mound of leaves, you crouch down trying to control your breathing. The sounds of 
+                Your pursuers approach, but you remain motionless. Are you still hiding or do you take the opportunity to 
+                try to fight back?
             `;
           updateDecisionButtons([
-            'Permanecer escondido',
-            'Contraatacar por sorpresa'
+            'stay hidden',
+            'Strike back by surprise'
           ]);
           break;
 
-        case 'Esperar el enfrentamiento':
-          storyTitle.textContent = 'Esperar el enfrentamiento';
+        case 'Wait for the battle':
+          storyTitle.textContent = 'Wait for the battle';
           storyText.textContent = `
-                Te mantienes firme, escuchando los pasos acercarse. En cualquier momento, entrarían por la 
-                ventana rota o la puerta destrozada. Preparas tu arma improvisada y decides que estás listo 
-                para enfrentar lo que venga. Los primeros enemigos aparecen a la vista... ¡Es tu momento!
+                You stand your ground, listening to the footsteps approach. At any moment, they would enter through the 
+                broken window or smashed door. You prepare your improvised weapon and decide that you are ready 
+                to face whatever comes. The first enemies appear in sight... It's your time!
             `;
           updateDecisionButtons([
-            'Atacar inmediatamente',
-            'Esperar a que se acerquen más'
+            'Attack immediately',
+            'Wait for them to get closer'
           ]);
           break;
 
-        case 'Moverse para emboscar':
-          storyTitle.textContent = 'Moverse para emboscar';
+        case 'Move to ambush':
+          storyTitle.textContent = 'Move to ambush';
           storyText.textContent = `
-                Buscas una mejor posición, algo que te dé ventaja en el enfrentamiento. Te escondes en una esquina 
-                oscura detrás de una estantería rota, observando la entrada. Cuando los pasos se acercan, 
-                te preparas para sorprenderlos desde las sombras.
+                You are looking for a better position, something that will give you an advantage in the confrontation. You hide in a corner 
+                dark behind a broken bookshelf, watching the entrance. When the footsteps get closer, 
+                you prepare to surprise them from the shadows.
             `;
           updateDecisionButtons([
-            'Atacar desde las sombras',
-            'Esperar el momento perfecto'
+            'Attack from the shadows',
+            'Wait for the perfect moment'
           ]);
           break;
 
-        case 'Buscar sigilosamente una salida':
-          storyTitle.textContent = 'Aproximación Sigilosa';
+        case 'Wait for the battle':
+          storyTitle.textContent = 'Stealthy approach';
           storyText.textContent = `
-                        Te mueves con cautela por la cabaña, procurando que las tablas del suelo no crujan 
-                        bajo tus pies. Tras una inspección minuciosa, descubres una pequeña trampilla 
-                        parcialmente oculta bajo una alfombra vieja. Podría ser tu ruta de escape, pero 
-                        también podría ser una trampa.
+                        You move cautiously around the cabin, making sure the floorboards don't creak. 
+                        under your feet. Upon close inspection, you discover a small trapdoor 
+                        partially hidden under an old rug. It could be your escape route, but 
+                        It could also be a trap.
                     `;
           updateDecisionButtons([
-            'Investigar la trampilla',
-            'Buscar otra salida'
+            'Investigate the trapdoor',
+            'Search for another exit'
           ]);
           break;
 
-        case 'Investigar la trampilla':
-          storyTitle.textContent = 'Investigar la trampilla';
+        case 'Investigate the trapdoor':
+          storyTitle.textContent = 'Investigate the trapdoor';
           storyText.textContent = `
-                        Al acercarte a la trampilla, sientes un aire frío que emana desde sus grietas. 
-                        Abres la tapa lentamente y encuentras una escalera que desciende hacia la oscuridad. 
-                        De repente, una luz azul comienza a brillar al fondo. ¿Bajas o te alejas?
+                        As you approach the hatch, you feel cold air emanating from its cracks. 
+                        You open the lid slowly and find a staircase descending into the darkness. 
+                        Suddenly, a blue light begins to shine in the background. Do you go down or walk away?
                     `;
           updateDecisionButtons([
-            'Bajar por la escalera',
-            'Cerrar la trampilla y explorar la casa'
+            'Go down the stairs',
+            'Close the trapdoor and investigate the house'
           ]);
           break;
 
-        case 'Buscar otra salida':
-          storyTitle.textContent = 'Buscar otra salida';
+        case 'Search for another exit':
+          storyTitle.textContent = 'Search for another exit';
           storyText.textContent = `
-                        Decides alejarte de la trampilla y buscar una salida diferente. Caminas sigilosamente 
-                        por los pasillos oscuros de la casa, notando que las puertas están cerradas y las ventanas 
-                        bloqueadas. Sin embargo, encuentras una puerta lateral entreabierta. 
-                        ¿Te arriesgas a abrirla o sigues explorando?
+                        You decide to move away from the trapdoor and look for a different exit. You walk stealthily 
+                        through the dark hallways of the house, noticing that the doors are closed and the windows 
+                        blocked. However, you find a side door ajar. 
+                        Do you risk opening it or continue exploring?
                     `;
           updateDecisionButtons([
-            'Abrir la puerta lateral',
-            'Seguir explorando la casa'
+            'Open the side door',
+            'Continue exploring the house'
           ]);
           break;
 
-        case 'Abrir la puerta lateral':
-          storyTitle.textContent = 'Abrir la puerta lateral';
+        case 'Open the side door':
+          storyTitle.textContent = 'Open the side door';
           storyText.textContent = `
-                Lentamente empujas la puerta lateral, y esta se abre con un chirrido. Descubres un pequeño almacén lleno de 
-                cajas viejas y telarañas. En una de las cajas encuentras una linterna funcional. 
-                Justo cuando piensas que es seguro, escuchas pasos acercándose desde el pasillo. 
-                ¿Te escondes en el almacén o sales a enfrentarte a quien sea?
+                        You slowly push the side door, and it creaks open. You discover a small warehouse full of 
+                        old boxes and cobwebs. In one of the boxes you find a functional flashlight. 
+                        Just when you think it's safe, you hear footsteps approaching from the hallway. 
+                        Do you hide in the warehouse or go out to confront whoever?
             `;
           updateDecisionButtons([
-            'Esconderse en el almacén',
-            'Salir a enfrentarse a quien sea'
+            'Hide in the warehouse',
+            'Go out and face whoever'
           ]);
           break;
 
-        case 'Seguir explorando la casa':
-          storyTitle.textContent = 'Seguir explorando la casa';
+        case 'Continue exploring the house':
+          storyTitle.textContent = 'Continue exploring the house';
           storyText.textContent = `
-                  Decides ignorar la puerta lateral y continúas explorando la casa. Subes las escaleras y encuentras un 
-                  pasillo lleno de habitaciones. Algunas puertas están abiertas ligeramente, y otras parecen cerradas 
-                  con llave. Escuchas un susurro proveniente de una de las habitaciones. 
-                  ¿Sigues el susurro o buscas otra área de la casa para explorar?
+                  You decide to ignore the side door and continue exploring the house. You go up the stairs and find a 
+                  hallway full of rooms. Some doors are open slightly, and others appear closed 
+                  with key. You hear a whisper coming from one of the rooms. 
+                  Do you follow the whisper or find another area of ​​the house to explore?
               `;
           updateDecisionButtons([
-            'Seguir el susurro',
-            'Buscar otra área'
+            'Follow the whisper',
+            'Find another area'
           ]);
           break;
 
-        case 'Esconderse en el almacén':
-          storyTitle.textContent = 'Esconderse en el almacén';
+        case 'Hide in the warehouse':
+          storyTitle.textContent = 'Hide in the warehouse';
           storyText.textContent = `
-                  Te ocultas detrás de las cajas, conteniendo la respiración mientras los pasos se acercan. 
-                  La puerta del almacén se abre lentamente, y una figura entra iluminando con una linterna. 
-                  ¿Te quedas en silencio y esperas que no te descubran o intentas salir corriendo?
+                 You hide behind the boxes, holding your breath as the footsteps get closer. 
+                  The door to the warehouse slowly opens, and a figure enters, shining a flashlight. 
+                  Do you stay silent and hope not to be discovered or do you try to run away?
               `;
           updateDecisionButtons([
-            'Quedarse en silencio',
-            'Salir corriendo'
+            'Stay slient',
+            'Run out'
           ]);
           break;
 
-        case 'Salir a enfrentarse a quien sea':
-          storyTitle.textContent = 'Salir a enfrentarse a quien sea';
+        case 'Go out and face whoever':
+          storyTitle.textContent = 'Go out and face whoever';
           storyText.textContent = `
-                  Tomas una profunda respiración y sales del almacén. En el pasillo, te encuentras con una persona desconocida 
-                  que parece igual de sorprendida que tú. Resulta ser otro visitante atrapado en la casa. 
-                  Deciden colaborar para encontrar una salida, pero escuchan un fuerte golpe proveniente del sótano. 
-                  ¿Investigan el sótano juntos o buscan otra salida por el piso superior?
+                  You take a deep breath and leave the warehouse. In the hallway, you meet an unknown person 
+                  who seems just as surprised as you. It turns out to be another visitor trapped in the house. 
+                  They decide to collaborate to find a way out, but they hear a loud bang coming from the basement. 
+                  Do you investigate the basement together or look for another exit through the upper floor?
               `;
           updateDecisionButtons([
-            'Investigar el sótano',
-            'Buscar otra salida por el piso superior'
+            'Investigate the basement',
+            'Find another exit on the upper floor'
           ]);
           break;
 
-        case 'Seguir el susurro':
-          storyTitle.textContent = 'Seguir el susurro';
+        case 'Follow the whisper':
+          storyTitle.textContent = 'Follow the whisper';
           storyText.textContent = `
-                  Sigues el susurro hasta una habitación al final del pasillo. Dentro, encuentras un diario antiguo sobre 
-                  una mesa, abierto en una página con extrañas inscripciones. Mientras intentas descifrar el texto, 
-                  una sombra se mueve detrás de ti. 
-                  ¿Te das la vuelta para enfrentar lo que sea o tomas el diario y huyes?
+                  You follow the whisper to a room at the end of the hallway. Inside, you find an old diary about 
+                  a table, open to a page with strange inscriptions. While you try to decipher the text, 
+                  a shadow moves behind you. 
+                  Do you turn around to face whatever it is or take the diary and run?
               `;
           updateDecisionButtons([
-            'Darse la vuelta y prepararse para pelear',
-            'Tomar el diario y huir'
+            'turn around and prepare to fight',
+            'Take the diary and run away'
           ]);
           break;
 
-        case 'Buscar otra área':
-          storyTitle.textContent = 'Buscar otra área';
+        case 'Find another area':
+          storyTitle.textContent = 'Find another area';
           storyText.textContent = `
-                  Ignoras el susurro y decides explorar otra parte de la casa. Llegas a una biblioteca polvorienta con 
-                  estanterías llenas de libros antiguos. Uno de los libros parece fuera de lugar y brilla débilmente. 
-                  ¿Lo tomas y lo abres o buscas pistas en otra parte de la biblioteca?
+                  You ignore the whisper and decide to explore another part of the house. You arrive at a dusty library with 
+                  shelves full of old books. One of the books seems out of place and glows faintly. 
+                  Do you pick it up and open it or do you look elsewhere in the library for clues?
               `;
           updateDecisionButtons([
-            'Tomar y abrir el libro',
-            'Buscar pistas en la biblioteca'
+            'Take and open the book',
+            'Search for clues in the library'
           ]);
           break;
 
-        case 'Cerrar la trampilla y explorar la casa':
-          storyTitle.textContent = 'Buscar otra salida';
+        case 'Close the hatch and explore the house':
+          storyTitle.textContent = 'Search for another exit';
           storyText.textContent = `
-                          Decides alejarte de la trampilla y buscar una salida diferente. Caminas sigilosamente 
-                          por los pasillos oscuros de la casa, notando que las puertas están cerradas y las ventanas 
-                          bloqueadas. Sin embargo, encuentras una puerta lateral entreabierta. 
-                          ¿Te arriesgas a abrirla o sigues explorando?
+                          You decide to move away from the trapdoor and look for a different exit. You walk stealthily 
+                          through the dark hallways of the house, noticing that the doors are closed and the windows 
+                          blocked. However, you find a side door ajar. 
+                          Do you risk opening it or continue exploring?
                       `;
           updateDecisionButtons([
-            'Abrir la puerta lateral',
-            'Seguir explorando la casa'
+            'Open the side door',
+            'Continue exploring the house'
           ]);
           break;
 
-        case 'Bajar por la escalera':
-          storyTitle.textContent = 'Bajar por la escalera';
+        case 'Go down the stairs':
+          storyTitle.textContent = 'Go down the stairs';
           storyText.textContent = `
-                Desciendes la escalera con cuidado. La luz azul aumenta en intensidad, revelando un 
-                túnel subterráneo. Escuchas pasos metálicos que parecen acercarse lentamente... 
-                ¿Sigues bajando o vuelves arriba?
+                You descend the stairs carefully. The blue light increases in intensity, revealing a 
+                underground tunnel. You hear metallic footsteps that seem to be approaching slowly... 
+                Do you keep going down or go back up?
             `;
           updateDecisionButtons([
-            'Seguir bajando',
-            'Volver arriba'
+            'continue down',
+            'Back to top'
           ]);
           break;
 
-        case 'Seguir bajando':
-          storyTitle.textContent = 'Seguir bajando';
+        case 'Continue down':
+          storyTitle.textContent = 'Continue down';
           storyText.textContent = `
-                Decides seguir bajando con cautela, asegurándote de que cada paso sea firme. 
-                El aire se va volviendo más frío a medida que desciendes más profundo en el túnel, 
-                pero no encuentras más obstáculos. El descenso continúa sin incidentes, y el ambiente 
-                se vuelve más silencioso y sombrío con cada paso que das.
+               You decide to continue down cautiously, making sure each step is firm. 
+                The air becomes colder as you descend deeper into the tunnel, 
+                but you don't find any more obstacles. The descent continues without incident, and the atmosphere 
+                It grows quieter and gloomier with every step you take.
             `;
 
           updateDecisionButtons([
-            'Seguir descendiendo hacia lo desconocido',
-            'Desmayarte de la nada'
+            'Continue descending into the unknown',
+            'Faint out of nowhere'
           ]);
           break;
 
-        case 'Seguir descendiendo hacia lo desconocido':
-          storyTitle.textContent = 'Seguir descendiendo hacia lo desconocido';
+        case 'Continue descending into the unknown':
+          storyTitle.textContent = 'Continue descending into the unknown';
           storyText.textContent = `
-                  Sigues descendiendo con cuidado, cada paso calculado para no hacer ruido. 
-                  A medida que avanzas, la oscuridad se va desvaneciendo lentamente, y a lo lejos, 
-                  logras ver una habitación iluminada. La luz es extraña y moderna, contrastando 
-                  con la antigua apariencia del túnel. Te preguntas qué podría estar allí, 
-                  pero no sabes si acercarte es lo más seguro.
+                 You continue descending carefully, each step calculated so as not to make a sound. 
+                  As you advance, the darkness slowly fades, and in the distance, 
+                  You can see a lighted room. The light is strange and modern, contrasting 
+                  with the old appearance of the tunnel. You wonder what could be there, 
+                  but you don't know if getting closer is the safest thing to do.
               `;
 
           updateDecisionButtons([
-            'Ir hacia la habitación iluminada',
-            'Seguir explorando para buscar un lugar seguro'
+            'Go to the lighted room',
+            'Continue exploring to find a safe place'
           ]);
           break;
 
-        case 'Ir hacia la habitación iluminada':
-          storyTitle.textContent = 'Ir hacia la habitación iluminada';
+        case 'Go to the lighted room':
+          storyTitle.textContent = 'Go to the lighted room';
           storyText.textContent = `
-              Mientras avanzas hacia la habitación iluminada, un escalofrío recorre tu cuerpo. Al mirar hacia atrás, notas una sombra oscura y extraña que parece moverse a lo lejos. Al principio, parece estar quieta, pero de repente, comienza a moverse rápidamente hacia ti, corriendo a una velocidad aterradora.
-          
-              No sabes qué es, pero la sensación de peligro es inconfundible. La sombra está acercándose rápidamente y parece que no hay escapatoria.
-          
-              ¿Qué vas a hacer?
+             As you walk into the lighted room, a chill runs through your body. Looking back, you notice a strange, dark shadow that seems to move in the distance. At first, it appears to be standing still, but suddenly, it begins to move quickly towards you, running at a terrifying speed.
+              You don't know what it is, but the feeling of danger is unmistakable. The shadow is approaching quickly and there seems to be no escape.
+              What are you going to do?
             `;
 
           updateDecisionButtons([
-            'Prepararse para pelear',
-            'Tratar de huir'
+            'Prepare for the battle',
+            'try to escape'
           ]);
           break;
 
-          case 'Prepararse para pelear':
-            storyTitle.textContent = 'Prepararse para pelear';
+          case 'Prepare for the battle':
+            storyTitle.textContent = 'Prepare for the battle';
             storyText.textContent = `
-              Te preparas para enfrentar a la sombra amenazante. Sientes la adrenalina recorriendo tu cuerpo mientras te pones en posición de combate.
-              Una extraña energía comienza a rodear tu cuerpo, y sabes que debes elegir tu movimiento sabiamente para sobrevivir.
+                You prepare to face the threatening shadow. You feel the adrenaline rushing through your body as you get into a combat stance.
+              A strange energy begins to surround your body, and you know you must choose your movement wisely to survive.
             `;
           
             // Generar elección aleatoria del enemigo
@@ -627,26 +623,26 @@ document.addEventListener('DOMContentLoaded', () => {
             if (combatResult.result === 'Victoria') {
               storyTitle.textContent = '¡Victoria!';
               storyText.textContent = `
-                Con un movimiento rápido y certero, logras derrotar a la sombra amenazante. 
-                Tu ${combatResult.playerMove} destruye el ataque enemigo (${combatResult.enemyMove}).
-                Una luz brillante inunda la habitación, marcando el final de tu desafío.
+                With a quick and accurate movement, you manage to defeat the threatening shadow. 
+                You ${combatResult.playerMove} destroy the attack (${combatResult.enemyMove}).
+               A bright light floods the room, marking the end of your challenge.
                 
-                ¡Has sobrevivido y triunfado en esta terrible aventura!
+               You have survived and triumphed in this terrible adventure!
               `;
-              updateDecisionButtons(['Celebrar la victoria']);
+              updateDecisionButtons(['Celebrate victory']);
             } else {
-              storyTitle.textContent = 'Derrota';
+              storyTitle.textContent = 'Defeat';
               storyText.textContent = `
-                A pesar de tus esfuerzos, la sombra es demasiado poderosa. 
-                Tu ${combatResult.playerMove} no logra detener el ataque enemigo (${combatResult.enemyMove}).
-                Recibes un golpe devastador que te deja sin fuerzas.
+                Despite your efforts, the shadow is too powerful.
+                You ${combatResult.playerMove} fails to stop the enemy attack (${combatResult.enemyMove}).
+                You receive a devastating blow that leaves you powerless.
                 
-                La oscuridad te consume, y tu aventura termina aquí.
+                The darkness consumes you, and your adventure ends here.
               `;
           
               // Establecer la barra de HP a 0
               hpBar.style.width = '0%';
-              updateDecisionButtons(['Reiniciar la historia']);
+              updateDecisionButtons(['Restart the story']);
             }
             break;
           
@@ -660,69 +656,69 @@ document.addEventListener('DOMContentLoaded', () => {
               case 'rogue':
                 return 'scissors';
               default:
-                console.error('Tipo de personaje desconocido:', playerType);
+                console.error('Unknown character type:', playerType);
                 return 'rock'; // Valor predeterminado en caso de error
             }
           }          
 
-        case 'Celebrar la victoria':
+        case 'Celebrate victory':
           // Agregar una escena final o reiniciar
-          storyTitle.textContent = 'Fin de la Aventura';
+          storyTitle.textContent = 'End of the adventure';
           storyText.textContent = `
-                Has superado todos los desafíos y sobrevivido a la terrible aventura.
-                Tu valentía y habilidad te han llevado a la victoria.
+                You have overcome all the challenges and survived the terrible adventure.
+                Your bravery and skill have led you to victory.
                 
-                Felicidades, héroe!
+                Congratulations, hero!
             `;
           updateDecisionButtons([
-            'Reiniciar la historia'
+            'Restart the story'
           ]);
           break;
 
-        case 'Reiniciar la historia':
+        case 'Restart the story':
           location.reload();
           break;
 
         case 'Tratar de huir':
-          storyTitle.textContent = 'Tratar de huir';
+          storyTitle.textContent = 'Try to escape';
           storyText.textContent = `
-              En un intento desesperado, giras sobre tus talones y comienzas a correr. Tus pasos resuenan en el pasillo mientras buscas frenéticamente un lugar donde esconderte o escapar. Sin embargo, a pesar de tu esfuerzo, no encuentras ninguna salida ni refugio. Las paredes parecen cerrarse a tu alrededor, y la sombra avanza rápidamente, cada vez más cerca. 
+             In a desperate attempt, you turn on your heels and start running. Your footsteps echo down the hallway as you frantically search for a place to hide or escape. However, despite your efforts, you can't find any way out or shelter. The walls seem to close around you, and the shadow moves quickly, closer and closer. 
           
-              En tu carrera, te das cuenta de que no hay ningún lugar donde puedas huir. El sonido de tus respiraciones aceleradas se mezcla con el ruido de la sombra que se acerca. Sin más opciones, te encuentras acorralado en un rincón oscuro, con la figura aterradora ya a solo unos metros de ti.
+              In your career, you realize that there is nowhere you can run. The sound of your accelerated breathing mixes with the noise of the approaching shadow. With no other options, you find yourself cornered in a dark corner, with the terrifying figure already just a few feet away from you.
           
-              La figura oscura se detiene, y tú te ves obligado a tomar una decisión. El miedo te paraliza, pero sabes que debes actuar rápido.
+              The dark figure stops, and you are forced to make a decision. Fear paralyzes you, but you know you must act quickly.
           
-              ¿Qué harás?
+              What will you do?
             `;
 
           updateDecisionButtons([
-            'Prepararse para la pelea',
-            'Atacarlo de sorpresa'
+            'Prepare for the battle',
+            'Attack him by surprise'
           ]);
           break;
 
-        case 'Desmayarte de la nada':
-          storyTitle.textContent = 'Desmayarte de la nada';
+        case 'Faint out of nowhere':
+          storyTitle.textContent = 'Faint out of nowhere';
           storyText.textContent = `
-                A medida que sigues descendiendo, comienzas a sentirte extraño, como si una fuerte 
-                debilidad te invadiera. El aire se vuelve más denso y tu visión se nubló. Antes de poder 
-                reaccionar, pierdes el equilibrio y te desmayas, cayendo de forma incontrolada hacia abajo, 
-                perdiendo la conciencia.
+               As you continue to descend, you begin to feel strange, as if a strong 
+                weakness would invade you. The air grows thicker and your vision blurs. Before being able 
+                react, you lose your balance and faint, falling uncontrollably downwards, 
+                losing consciousness.
             `;
 
           const currentHP1 = parseInt(hpBar.style.width);
           hpBar.style.width = `${currentHP1 - 10}%`;
 
           updateDecisionButtons([
-            'Intentar despertarse y seguir adelante',
-            'Aprovechar el momento y descansar un poco'
+            'Try to wake up and move on',
+            'Take advantage of the moment and rest a little'
           ]);
           break;
 
-        case 'Intentar despertarse y seguir adelante':
-          storyTitle.textContent = 'Intentar despertarse y seguir adelante';
+        case 'Try to wake up and move on':
+          storyTitle.textContent = 'Try to wake up and move on';
           storyText.textContent = `
-                Luchas contra la sensación de desmayo, sacudiendo la cabeza y abriendo los ojos con esfuerzo. 
+              Luchas contra la sensación de desmayo, sacudiendo la cabeza y abriendo los ojos con esfuerzo. 
                 Te levantas lentamente, tambaleante, y te fijas en la dirección de la luz brillante que ves 
                 en la distancia. A medida que te acercas a ella, una sombra se perfila ante ti, una figura 
                 alta que parece caminar hacia ti con paso firme, sujetando un bate con ambas manos. La luz 
@@ -734,65 +730,65 @@ document.addEventListener('DOMContentLoaded', () => {
           hpBar.style.width = `${currentHP2 - 5}%`;
 
           updateDecisionButtons([
-            'Levantarse y prepararse para lo que viene',
-            'Tratar de huir'
+            'Get up and prepare for what is coming',
+            'try to escape'
           ]);
           break;
 
-        case 'Aprovechar el momento y descansar un poco':
-          storyTitle.textContent = 'Aprovechar el momento y descansar un poco';
+        case 'Take advantage of the moment and rest a little':
+          storyTitle.textContent = 'Take advantage of the moment and rest a little';
           storyText.textContent = `
-                Exhausto por la caída, decides que es mejor descansar. Te tumbas en el suelo y cierras los ojos, 
-                pensando que has logrado escapar de todo lo que había arriba. El cansancio te vence rápidamente, 
-                y pronto te sumerges en un sueño profundo y reparador. Te dejas llevar por la tranquilidad, 
-                sin saber que no estás tan a salvo como creías.
+                Exhausted from the fall, you decide it's better to rest. You lie down on the ground and close your eyes, 
+                thinking that you have managed to escape everything that was above. Tiredness overcomes you quickly, 
+                and soon you fall into a deep and restful sleep. You let yourself be carried away by the tranquility, 
+                without knowing that you are not as safe as you thought.
                 
-                Mientras duermes, una oscura presencia se acerca lentamente, una entidad que habita en las profundidades 
-                de este lugar. Silenciosa, se aproxima sin que tú lo notes, y antes de que puedas despertar, te encuentra 
-                en tu sueño, el final ya inevitable. Todo termina aquí.
+                While you sleep, a dark presence slowly approaches, an entity that dwells in the depths 
+                of this place. Silently, it approaches without you noticing, and before you can wake up, it finds you 
+                In your dream, the end is already inevitable. It all ends here.
             `;
 
           const currentHP3 = parseInt(hpBar.style.width);
           hpBar.style.width = '0%';
 
           updateDecisionButtons([
-            'Juego terminado. Has sido derrotado por la entidad.'
+            'Game over. You have been defeated by the entity.'
           ]);
 
           break;
-        case 'Juego terminado. Has sido derrotado por la entidad.':
+        case 'Game over. You have been defeated by the entity.':
           location.reload();
           break;
 
-        case 'Volver arriba':
-          storyTitle.textContent = 'Volver arriba';
+        case 'Back to top':
+          storyTitle.textContent = 'Back to top';
           storyText.textContent = `
-                Decides que es mejor regresar, así que empiezas a subir la escalera. Sin embargo, justo 
-                cuando estás a punto de salir por la trampilla, algo inesperado sucede: alguien cierra 
-                la trampilla violentamente. Tus brazos quedan atrapados, y el dolor es insoportable. 
-                Sin poder liberarte, caes hacia tu muerte, mientras la vida se escapa de tu cuerpo.
+                You decide it's better to go back, so you start climbing the ladder. However, just 
+                When you are about to go out through the trapdoor, something unexpected happens: someone closes 
+                the trapdoor violently. Your arms are trapped, and the pain is unbearable. 
+                Unable to free yourself, you fall to your death, as life escapes from your body.
             `;
           hpBar.style.width = '0%';
 
           updateDecisionButtons([
-            'Reiniciar la historia'
+            'Restart the story'
           ]);
           break;
 
-        case 'Reiniciar la historia':
+        case 'Restart the story':
           location.reload();
           break;
 
-        case 'Seguir explorando la casa':
-          storyTitle.textContent = 'Seguir explorando la casa';
+        case 'Continue exploring the house':
+          storyTitle.textContent = 'Continue exploring the house';
           storyText.textContent = `
-                        Decides no abrir la puerta lateral y continúas explorando. A medida que te adentras más en 
-                        la casa, el silencio se vuelve cada vez más pesado, como si algo estuviera esperando el 
-                        momento adecuado para actuar...
+                        You decide not to open the side door and continue exploring. As you get deeper into 
+                        the house, the silence becomes increasingly heavier, as if something was waiting for the 
+                        right time to act...
                     `;
           updateDecisionButtons([
-            'Buscar en el comedor',
-            'Buscar en el dormitorio'
+            'Search in the dining room',
+            'Search in the bedroom'
           ]);
           break;
 
